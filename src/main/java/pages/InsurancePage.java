@@ -16,6 +16,7 @@ public class InsurancePage {
     public WebDriver driver;
 
     public InsurancePage(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(driver, this);
 
         ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
@@ -158,6 +159,8 @@ public class InsurancePage {
         }
         throw new AssertionError("Поле не объявлено на странице");
     }
+    
+
     public void checkFieldErrorMessage(String errorMessage){
         String actualValue = driver.findElement(By.xpath("//DIV[@ng-show='tryNext && myForm.$invalid'][text()='Заполнены не все обязательные поля']")).getText();
         org.junit.Assert.assertTrue(String.format("Получено значение [%s]. Ожидалось [%s]", actualValue, errorMessage),
